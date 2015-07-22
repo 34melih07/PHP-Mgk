@@ -4,13 +4,25 @@ namespace Cekirdek;
 
 class Rota
 {
+	/**
+	 * @var array
+	 */
 	private $rotalar = [];
 
+	/**
+	 * Farklı açıklamalar Mgk.php dosyasında aynı isimli metodda yapıldı
+	 * Bu metod sınıf içinde bilgileri depolar
+	 */
 	public function rota($metod, $duzenliIfade, $geriCagirim)
 	{
 		$this->rotalar[] = [$metod, rtrim($duzenliIfade, '/'), $geriCagirim];
 	}
 
+	/**
+	 * Kontrol dosyasını oluşturan metod
+	 * Rotaları çek ederken kullanılır
+	 * @param string [$geriCagirim]
+	 */
 	private function kontrolCagir($geriCagirim)
 	{
 		$geriCagirim = explode('@', $geriCagirim);
@@ -23,6 +35,7 @@ class Rota
 			$kontrol = '\Kontroller\\'.$kontrol;
 			$obje = new $kontrol;
 
+			// Benzer açıklamalar Mgk.php dosyasında yapıldı
 			if (is_callable([$obje, $aksiyon])) {
 				return [$obje, $aksiyon];
 			}
@@ -30,6 +43,11 @@ class Rota
 		Hata::sayfaBulunamadi();
 	}
 
+	/**
+	 * Rotayı başlatan metod
+	 * Bu metodda rotalar çek edilir ve buna göre çağırılır
+	 * Daha detaylı açıklama eklenecek...
+	 */
 	public function baslat()
 	{
 		$karsiliklar = [
