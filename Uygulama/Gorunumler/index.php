@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>PHP Mgk Kod Çatısı</title>
+		<title><?=$sayfaBasligi?></title>
 		<link rel="stylesheet" href="<?=url('/Dosyalar/bootstrap.min.css')?>">
 	</head>
 	<body>
